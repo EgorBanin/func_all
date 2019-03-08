@@ -1,0 +1,8 @@
+.gitattributes export-ignore
+.gitignore export-ignore
+/make export-ignore
+/src export-ignore
+/tests export-ignore
+README.md export-ignore
+UNLICENSE export-ignore
+composer.json export-ignore

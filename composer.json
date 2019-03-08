@@ -1,0 +1,16 @@
+{
+    "name": "eb/func_all",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "license": "UNLICENSE",
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "files": [
+            "dist/func_all.php"
+        ]
+    }
+}
