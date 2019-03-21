@@ -17,5 +17,19 @@ function arr_usearch(array $array, callable $func)
             break;
         }
     }
+
     return $result;
+}
+
+/**
+ * Получение одномерного массива из многомерного
+ * @param array $arr
+ * @param bool $useKeys сохранять ключи (для одинаковых ключей значения перезапишутся)
+ * @return array
+ */
+function arr_flatten(array $arr, bool $useKeys = false): array
+{
+    $it = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($arr));
+
+    return iterator_to_array($it, $useKeys);
 }

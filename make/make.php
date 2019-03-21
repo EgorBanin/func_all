@@ -34,7 +34,7 @@ $code = "<?php declare(strict_types=1);\n\n";
 if ($namespace) {
     $code .= "namespace $namespace;\n\n";
 }
-$code .= implode("\n", $mappedFunctions);
+$code .= implode("\n\n", $mappedFunctions);
 
 $outputFile = $config['outputFile']?? 'php://stdout';
 file_put_contents($outputFile, $code);
@@ -62,7 +62,7 @@ function getFunctions(string $code): array
         if ( ! preg_match('~^function\s+(?<name>[^(]+)\s*\(~m', $part, $matches)) {
             continue;
         }
-        $functions[$matches['name']] = $delimeter . $part;
+        $functions[$matches['name']] = $delimeter . rtrim($part);
     }
 
     return $functions;

@@ -58,4 +58,68 @@ class ArrTest extends \PHPUnit\Framework\TestCase
             ],
         ];
     }
+
+    /**
+     * @dataProvider providerFlatten
+     * @param array $arr
+     * @param array $expected
+     */
+    public function testFlatten(array $arr, array $expected)
+    {
+        $this->assertSame($expected, \func_all\arr_flatten($arr));
+    }
+
+    public function providerFlatten()
+    {
+        return [
+            [
+                [],
+                [],
+            ],
+            [
+                [1, 2, 'foo'],
+                [1, 2, 'foo'],
+            ],
+            [
+                ['x' => 1, 'y' => 2, ['foo', 'bar', []]],
+                [1, 2, 'foo', 'bar'],
+            ],
+            [
+                ['x' => 1, 'y' => 2, ['foo', 'bar', ['x' => 2]]],
+                [1, 2, 'foo', 'bar', 2],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerFlattenUseKeys
+     * @param array $arr
+     * @param array $expected
+     */
+    public function testFlattenUseKeys(array $arr, array $expected)
+    {
+        $this->assertSame($expected, \func_all\arr_flatten($arr, true));
+    }
+
+    public function providerFlattenUseKeys()
+    {
+        return [
+            [
+                [],
+                [],
+            ],
+            [
+                [1, 2, 'foo'],
+                [1, 2, 'foo'],
+            ],
+            [
+                ['x' => 1, 'y' => 2, ['foo', 'bar', []]],
+                ['x' => 1, 'y' => 2, 'foo', 'bar'],
+            ],
+            [
+                ['x' => 1, 'y' => 2, ['foo', 'bar', ['x' => 2]]],
+                ['x' => 2, 'y' => 2, 'foo', 'bar'],
+            ],
+        ];
+    }
 }
