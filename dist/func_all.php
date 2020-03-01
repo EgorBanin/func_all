@@ -53,7 +53,7 @@ function ob_include(): string
  * @param object $obj
  * @param array $properties
  */
-function obj_init($obj, array $properties): void
+function obj_init(object $obj, array $properties): object
 {
     $func = function ($properties) {
         foreach (get_object_vars($this) as $name => $val) {
@@ -64,6 +64,7 @@ function obj_init($obj, array $properties): void
     };
     $closure = $func->bindTo($obj, $obj);
     $closure($properties);
+    return $obj;
 }
 
 /**

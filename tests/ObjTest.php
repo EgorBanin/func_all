@@ -14,8 +14,10 @@ class ObjTest extends \PHPUnit\Framework\TestCase
                 return $this->foo;
             }
         };
-        \func_all\obj_init($obj, ['foo' => 'bar']);
-        $this->assertSame('bar', $obj->getFoo()); // ]:->
+        $result = \func_all\obj_init($obj, ['foo' => 'bar']);
+        $this->assertSame('bar', $result->getFoo());
+        $this->assertSame($obj, $result);
+
     }
 
     public function testToArray()
@@ -26,7 +28,7 @@ class ObjTest extends \PHPUnit\Framework\TestCase
             private $bar = 'bar';
         };
         $result = \func_all\obj_to_array($obj);
-        $this->assertSame(['foo' => 'foo', 'bar' => 'bar'], $result); // ]:->
+        $this->assertSame(['foo' => 'foo', 'bar' => 'bar'], $result);
     }
 
 }
